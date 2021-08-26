@@ -1,0 +1,17 @@
+---
+- name: CVP gather facts
+  hosts: CVP
+  connection: httpapi
+  gather_facts: no
+  tasks:
+    - name: "Gather CVP facts {{inventory_hostname}}"
+      arista.cvp.cv_facts:
+        facts:
+          all
+#        gather_subset:
+#          hardware
+      register: cv_facts
+
+    - name: "Print out facts from {{inventory_hostname}}"
+      debug:
+        msg: "{{cv_facts | to_nice_json(indent=2)}}"

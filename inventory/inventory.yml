@@ -1,0 +1,40 @@
+---
+all:
+  children:
+    CVP:
+      hosts:
+        CVP-SERVER:
+    DC:
+      children:
+        DC_FABRIC:
+          children:
+            DC_SPINES:
+              hosts:
+                DC-SPINE1:
+                  ansible_host: 172.30.30.211
+                DC-SPINE2:
+                  ansible_host: 172.30.30.212
+            DC_L3LEAFS:
+              children:
+                DC_LEAF1:
+                  hosts:
+                    DC-LEAF1:
+                      ansible_host: 172.30.30.213
+                DC_LEAF2:
+                  hosts:
+                    DC-LEAF2:
+                      ansible_host: 172.30.30.214
+                DC_LEAF3:
+                  hosts:
+                    DC-LEAF3:
+                      ansible_host: 172.30.30.215
+                DC_LEAF4:
+                  hosts:
+                    DC-LEAF4:
+                      ansible_host: 172.30.30.216
+        DC_TENANTS_NETWORKS:
+          children:
+            DC_L3LEAFS
+        DC_SERVERS:
+          children:
+            DC_L3LEAFS
