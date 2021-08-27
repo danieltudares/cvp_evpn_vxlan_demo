@@ -34,7 +34,7 @@ all:
                       ansible_host: 172.30.30.216
         DC_TENANTS_NETWORKS:
           children:
-            DC_L3LEAFS
+            DC_L3LEAFS:
         DC_SERVERS:
           children:
-            DC_L3LEAFS
+            DC_L3LEAFS:

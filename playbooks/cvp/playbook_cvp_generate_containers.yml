@@ -1,0 +1,17 @@
+---
+- name: Configlet upload management
+  hosts: all
+  connection: local
+  gather_facts: false
+  collections:
+    - arista.avd
+
+  tasks:
+    - name: generate intended variables
+      tags: [always]
+      inventory_to_container:
+        inventory: "./inventory"
+        container_root: "DC"
+        configlet_dir: "intended/configs"
+        configlet_prefix: "ANSIBLE"
+        destination: "{{playbook_dir}}/intended/structured_configs/{{inventory_hostname}}.yml"
