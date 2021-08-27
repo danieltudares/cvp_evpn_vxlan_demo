@@ -1,0 +1,32 @@
+---
+# - name: Create Output Folders
+#   hosts: localhost
+#   connection: local
+#   gather_facts: false
+
+#   tasks:
+#     - name: Create Output Folders
+#       file:
+#         path: "{{ item }}"
+#         state: directory
+#       loop:
+#         - ../../inventory/documentation
+#         - ../../inventory/documentation/DC_FABRIC
+#         - ../../inventory/documentation/devices
+#         - ../../inventory/intended
+#         - ../../inventory/intended/structured_configs
+#         - ../../inventory/intended/structured_configs/cvp
+#         - ../../inventory/intended/configs
+
+- name: Manage Arista EOS EVPN/VXLAN Configuration
+  hosts: DC_FABRIC
+  connection: local
+  gather_facts: false
+  collections:
+    - arista.avd
+    - arista.cvp
+  tasks:
+    - name: 'reset local folders for output'
+      tags: [build, generate]
+      import_role:
+        name: arista.avd.build_output_folders

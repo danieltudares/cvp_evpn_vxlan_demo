@@ -10,8 +10,8 @@
     - name: generate intended variables
       tags: [always]
       inventory_to_container:
-        inventory: "./inventory"
+        inventory: "./inventory/inventory.yml"
         container_root: "DC"
-        configlet_dir: "intended/configs"
+        configlet_dir: "./inventory/intended/configs"
         configlet_prefix: "ANSIBLE"
-        destination: "{{playbook_dir}}/intended/structured_configs/{{inventory_hostname}}.yml"
+        destination: "./inventory/intended/structured_configs/{{inventory_hostname}}.yml"
