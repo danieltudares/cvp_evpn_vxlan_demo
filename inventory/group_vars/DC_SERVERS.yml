@@ -26,7 +26,7 @@ servers:
         switches: [DC-LEAF1, DC-LEAF2]
         profile: TENANT_BLUE_COMPUTE
         port_channel:
-          description: PortChanne1
+          description: PortChannel
           mode: active
           short_esi: 0001:1010:1010
   server02:
@@ -38,7 +38,7 @@ servers:
         switches: [DC-LEAF1, DC-LEAF2]
         profile: TENANT_GREEN_COMPUTE
         port_channel:
-          description: PortChanne2
+          description: PortChannel
           mode: active
           short_esi: 0002:2020:2020
   server03:
@@ -50,7 +50,7 @@ servers:
         switches: [DC-LEAF1, DC-LEAF2, DC-LEAF3]
         profile: TENANT_GREEN_STORAGE
         port_channel:
-          description: PortChanne3
+          description: PortChannel
           mode: active
           short_esi: 0003:3030:3030
   server04:
@@ -62,7 +62,7 @@ servers:
         switches: [DC-LEAF2, DC-LEAF3]
         profile: TENANT_BLUE_COMPUTE
         port_channel:
-          description: PortChanne6
+          description: PortChannel
           mode: active
           short_esi: 0001:1111:1111
   server05:
@@ -74,7 +74,7 @@ servers:
         switches: [DC-LEAF3, DC-LEAF4]
         profile: TENANT_RED_STORAGE
         port_channel:
-          description: PortChanne4
+          description: PortChannel
           mode: active
           short_esi: 0004:4040:4040
   server06:
@@ -86,6 +86,6 @@ servers:
         switches: [DC-LEAF3, DC-LEAF4]
         profile: TENANT_BLUE_STORAGE
         port_channel:
-          description: PortChanne5
+          description: PortChannel
           mode: active
           short_esi: 0005:5050:5050

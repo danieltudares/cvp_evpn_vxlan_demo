@@ -6,7 +6,7 @@ tenants:
   Tenant_blue:
     mac_vrf_vni_base: 10000
     vrfs:
-      Tenant_blue_compute:
+      Tenant_blue_vrf:
         vrf_vni: 100
         vtep_diagnostic:
           loopback: 100
@@ -27,7 +27,7 @@ tenants:
   Tenant_green:
     mac_vrf_vni_base: 20000
     vrfs:
-      Tenant_green_compute:
+      Tenant_green_vrf:
         vrf_vni: 200
         vtep_diagnostic:
           loopback: 200
@@ -48,7 +48,7 @@ tenants:
   Tenant_red:
     mac_vrf_vni_base: 30000
     vrfs:
-      Tenant_red_compute:
+      Tenant_red_vrf:
         vrf_vni: 300
         svis:
           40:
