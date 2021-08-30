@@ -19,7 +19,7 @@ overlay_loopback_network_summary: 192.168.100.0/24
 vtep_loopback_network_summary: 192.168.101.0/24
 
 # Enable vlan aware bundles
-vxlan_vlan_aware_bundles: false
+#vxlan_vlan_aware_bundles: true
 
 # bgp peer groups passwords
 bgp_peer_groups:
@@ -35,10 +35,10 @@ spine:
   # defines the range of acceptable remote ASNs from leaf switches
   leaf_as_range: 65101-65132
   nodes:
-    spine1:
+    DC-SPINE1:
       id: 1
       mgmt_ip: 172.30.30.211/24
-    spine2:
+    DC-SPINE2:
       id: 2
       mgmt_ip: 172.30.30.212/24
 
@@ -60,6 +60,9 @@ l3leaf:
   node_groups:
     DC_LEAF1:
       bgp_as: 65101
+      filter:
+        tenants: [ Tenant_blue, Tenant_green ]
+        tags: [ blue_compute, green_compute, green_storage ]
       nodes:
         DC-LEAF1:
           id: 1
@@ -67,6 +70,9 @@ l3leaf:
           spine_interfaces: [Ethernet1, Ethernet1]
     DC_LEAF2:
       bgp_as: 65102
+      filter:
+        tenants: [ Tenant_blue, Tenant_green ]
+        tags: [ blue_compute, green_compute, green_storage ]
       nodes:
         DC-LEAF2:
           id: 2
@@ -74,6 +80,9 @@ l3leaf:
           spine_interfaces: [Ethernet2, Ethernet2]
     DC_LEAF3:
       bgp_as: 65103
+      filter:
+        tenants: [ Tenant_blue, Tenant_green, Tenant_red ]
+        tags: [ blue_compute, blue_storage, green_storage, red_storage ]
       nodes:
         DC-LEAF3:
           id: 3
@@ -81,6 +90,9 @@ l3leaf:
           spine_interfaces: [Ethernet3, Ethernet3]
     DC_LEAF4:
       bgp_as: 65104
+      filter:
+        tenants: [ Tenant_blue, Tenant_red ]
+        tags: [ blue_storage, red_storage ]
       nodes:
         DC-LEAF4:
           id: 4
@@ -117,14 +129,3 @@ bfd_multihop:
   min_rx: 1200
   multiplier: 3
 
-ansible_connection: httpapi
-ansible_network_os: eos
-ansible_user: cvpadmin
-# should use vault for passwords
-ansible_ssh_pass: arista123
-ansible_become: true
-ansible_become_method: enable
-ansible_httpapi_use_ssl: true
-ansible_httpapi_validate_certs: false
-# Configuration to get Virtual Env information
-ansible_python_interpreter: $(which python3)

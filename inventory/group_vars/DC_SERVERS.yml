@@ -26,8 +26,8 @@ servers:
         switches: [DC-LEAF1, DC-LEAF2]
         profile: TENANT_BLUE_COMPUTE
         port_channel:
-          description: PortChannel1
-          mode: Active
+          description: PortChanne1
+          mode: active
           short_esi: 0001:1010:1010
   server02:
     rack: RackA
@@ -38,8 +38,8 @@ servers:
         switches: [DC-LEAF1, DC-LEAF2]
         profile: TENANT_GREEN_COMPUTE
         port_channel:
-          description: PortChannel2
-          mode: Active
+          description: PortChanne2
+          mode: active
           short_esi: 0002:2020:2020
   server03:
     rack: RackA
@@ -50,8 +50,8 @@ servers:
         switches: [DC-LEAF1, DC-LEAF2, DC-LEAF3]
         profile: TENANT_GREEN_STORAGE
         port_channel:
-          description: PortChannel3
-          mode: Active
+          description: PortChanne3
+          mode: active
           short_esi: 0003:3030:3030
   server04:
     rack: RackB
@@ -62,8 +62,8 @@ servers:
         switches: [DC-LEAF2, DC-LEAF3]
         profile: TENANT_BLUE_COMPUTE
         port_channel:
-          description: PortChannel6
-          mode: Active
+          description: PortChanne6
+          mode: active
           short_esi: 0001:1111:1111
   server05:
     rack: RackB
@@ -74,18 +74,18 @@ servers:
         switches: [DC-LEAF3, DC-LEAF4]
         profile: TENANT_RED_STORAGE
         port_channel:
-          description: PortChannel4
-          mode: Active
+          description: PortChanne4
+          mode: active
           short_esi: 0004:4040:4040
   server06:
     rack: RackB
     adapters:
       - type: nic
-        server_ports: [E1, E2]
-        switch_ports: [Ethernet6, Ethernet7]
-        switches: [DC-LEAF4, DC-LEAF4]
+        server_ports: [E1,E2]
+        switch_ports: [Ethernet6, Ethernet6]
+        switches: [DC-LEAF3, DC-LEAF4]
         profile: TENANT_BLUE_STORAGE
         port_channel:
-          description: PortChannel5
-          mode: Active
+          description: PortChanne5
+          mode: active
           short_esi: 0005:5050:5050

@@ -35,4 +35,4 @@ name_servers:
 
 # NTP Servers IP or DNS name, first NTP server will be prefered, and sourced from Management VRF
 ntp_servers:
-  - time.google.com
+  - time.google.com iburst

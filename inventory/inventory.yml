@@ -4,6 +4,17 @@ all:
     CVP:
       hosts:
         CVP-SERVER:
+          ansible_httpapi_host: 172.30.30.252
+          ansible_host: 172.30.30.252
+          ansible_user: cvpadmin
+          ansible_password: arista123
+          ansible_connection: httpapi
+          ansible_httpapi_use_ssl: true
+          ansible_httpapi_validate_certs: false
+          ansible_network_os: eos
+          ansible_httpapi_port: 443
+          # Configuration to get Virtual Env information
+          ansible_python_interpreter: $(which python3)
     DC:
       children:
         DC_FABRIC:
@@ -32,6 +43,16 @@ all:
                   hosts:
                     DC-LEAF4:
                       ansible_host: 172.30.30.216
+          vars:
+            ansible_connection: httpapi
+            ansible_network_os: eos
+            ansible_user: cvpadmin
+            # should use vault for passwords
+            ansible_ssh_pass: arista123
+            ansible_become: true
+            ansible_become_method: enable
+            ansible_httpapi_use_ssl: true
+            ansible_httpapi_validate_certs: false      
         DC_TENANTS_NETWORKS:
           children:
             DC_L3LEAFS:
