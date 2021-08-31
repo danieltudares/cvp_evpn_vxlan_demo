@@ -3,6 +3,10 @@ all:
   children:
     CVP:
       hosts:
+        CVP-ZTP:
+          ansible_host: 172.30.30.252
+          ansible_user: root
+          ansible_password: 'arista123'
         CVP-SERVER:
           ansible_httpapi_host: 172.30.30.252
           ansible_host: 172.30.30.252
