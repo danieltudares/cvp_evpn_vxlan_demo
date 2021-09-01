@@ -56,7 +56,9 @@ all:
             ansible_become: true
             ansible_become_method: enable
             ansible_httpapi_use_ssl: true
-            ansible_httpapi_validate_certs: false      
+            ansible_httpapi_validate_certs: false  
+            # Configuration to get Virtual Env information
+            ansible_python_interpreter: $(which python3)    
         DC_TENANTS_NETWORKS:
           children:
             DC_L3LEAFS:

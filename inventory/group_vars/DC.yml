@@ -10,7 +10,7 @@ local_users:
   cvpadmin:
     privilege: 15
     role: network-admin
-    sha512_password: "$6$TbAlQPvwwGm4EExJ$4l6tR1e7H.VXiZQl03nsebnLG4w4OVtN5D7qx8UGBoTYYccNkXh1.xsQWq1GvGwAiS7xwPj2/"
+    sha512_password: "$6$pWE0vYbIJTmV0ZWc$nIrbLNYS3pIgpFj9vuzkchwyA19betlJZjWR.KE95GHwOALliiUUAu92JUWg9jQ12Yd3.aTQmWf.gRe2VNo2Y."
 
 # Cloud Vision server information
 cvp_instance_ip: 172.30.30.252
