@@ -5,38 +5,36 @@
   - [Lab deployment](#lab-deployment)
   - [Useful Links](#useful-links)
 
-## **Introduction**
+## **<h2>Introduction</h2>**
 
 This lab will demonstrate the deployment of an EVPN/VXLAN Active-Active (A-A) multihoming Spine/Leaf using CloudVision and Ansible AVD.
 
 The topology created on EVE-NG is as shown below: 
 
-![EVE-NG Topology](images/topology.png | width=100)
+<img src="images/topology.png" width="800">
 
-<img src="images/topology.png" width="650">
-
-## **Requirements:**
+## **<h2>Requirements:</h2>**
 
 For this lab environment we used the following tools and Arista images: 
 
-### Arista:
+### *Arista:*
 - Arista vEOS-lab 4.25.4M
 - Arista CloudVision Portal 2021.1.1
 
-### EVE-NG:
+### *EVE-NG:*
 - EVE-NG Professional Edition 4.0.1-56
 
-### Python:
+### *Python:*
 - Python 3.9.6 (min supported 3.6.8)
 
-### Ansible:
+### *Ansible:*
 - Ansible 2.10.13 (min supported 2.10.7)
 
-### Ansible roles:
+### *Ansible roles:*
 - arista.avd
 - arista.cvp
 
-### Additional python libraries:
+### *Additional python libraries:*
 - netaddr==0.7.19
 - Jinja2==2.11.3
 - treelib==1.5.5
@@ -47,10 +45,10 @@ For this lab environment we used the following tools and Arista images:
 - PyYAML==5.4.1
 - md-toc==7.1.0
 
-### Workstation: 
+### *Workstation:* 
 - Any device Mac/Win/Linux that has network reachability to the CVP and EOS management interfaces. This lab was setup using a Macbook on the same network as the mgmt_cloud bridge on the EVE-NG toppology. 
 
-### DHCP Server
+### *DHCP Server:*
 - Any DHCP server that can provide IP reservation based on MAC address. For this lab we will run ISC-DHCP inside de CloudVision server (This is only for lab purposes and not recommended for prod environments).
 
 ## **Environment Setup:**
