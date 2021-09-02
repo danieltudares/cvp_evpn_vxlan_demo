@@ -116,7 +116,7 @@ $ ansible-galaxy collection install arista.avd
 $ ansible-galaxy collection install arista.cvp
 ```
 
-4. Setup your EVE-NG topology as in the topology image. Alternatively, you can download the lab file and import to your EVE-NG server. [Arista_CVP_EVPN_AA_multihoming_lab.unl](./data/eve_lab_topology/Arista_CVP_EVPN_AA_multihoming_lab.unl) 
+4. Setup your EVE-NG topology as in the topology image. Alternatively, you can download the lab file and import to your EVE-NG server. [Arista_CVP_EVPN_AA_multihoming_lab.unl](./data/eve_lab_topology/Arista_CVP_EVPN_AA_multihoming_lab.zip) 
 
 5. Start your CloudVision Portal (CVP) node on EVE-NG and do the initial setup (not covered in this lab).
 
