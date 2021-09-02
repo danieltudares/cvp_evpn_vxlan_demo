@@ -52,16 +52,16 @@ For this lab environment the following tools and Arista images are used:
 - md-toc==7.1.0
 
 ### *Workstation:* 
-- Any device Mac/Win/Linux that has network reachability to the CVP and EOS management interfaces. This lab was setup using a Macbook on the same network as the mgmt_cloud bridge on the EVE-NG toppology. 
+- Any device Mac/Win/Linux or VM with network reachability to the CloudVision server and EOS management interfaces. 
 
 ### *DHCP Server:*
-- Any DHCP server that can provide IP reservation based on MAC address. For this lab we will run ISC-DHCP inside de CloudVision server (This is only for lab purposes and not recommended for prod environments).
+- Any DHCP server that can provide IP reservation based on MAC address. The DHCP server needs to be located on the same management network as the vEOS devices for the ZTP process. For this lab we will run ISC-DHCP inside de CloudVision server (This is only for lab purposes and not recommended for prod environments).
 
 ---
 
 ## **Environment Setup:**
 
-To run this lab, you can either clone this repo in your local environment and use ***/virtual_lab/EVE_NG/labs/EVPN_AA_Multihoming*** as your root folder or for a cleaner approach you can create a new folder in your local environment (or docker AVD container - see below). If you choose the later, this is the folder structure and files that you will need to create and copy to your environment: 
+To run this lab, you can either clone this repo in your local environment and use ***/virtual_lab/EVE_NG/labs/EVPN_AA_Multihoming*** as your root folder or for a cleaner approach you can create a new folder in your local environment (or docker AVD container - see next section). If you choose the later, this is the folder structure and files that you will need to create and copy to your environment: 
 
 ```
 |--EVPN_AA_Multihoming
@@ -89,7 +89,7 @@ Two methods can be used to get Ansible up and running: running a Python virtual 
 
 ### AVD Docker container:
 The AVD docker is a container with all requirements pre-installed. It is a quick way to start working on your lab without worrying about setting up your environment. 
-Info about getting the AVD docker container up and running here: https://avd.sh/en/releases-v3.x.x/docs/installation/setup-environment.html#use-docker-as-avd-shell
+Info about getting the AVD docker container up and running [here](https://avd.sh/en/releases-v3.x.x/docs/installation/setup-environment.html#use-docker-as-avd-shell)
 
 ### Python virtual environment:
 1. From the project root folder (*/EVPN_AA_Multihoming*) create a new python environment and activate it:
@@ -116,7 +116,7 @@ $ ansible-galaxy collection install arista.avd
 $ ansible-galaxy collection install arista.cvp
 ```
 
-4. Setup your EVE-NG topology as in the image below. You can alternatively download the lab image and import to your EVE-NG server. 
+4. Setup your EVE-NG topology as in the topology image. Alternatively, you can download the lab file and import to your EVE-NG server. [Arista_CVP_EVPN_AA_multihoming_lab.unl](./data /eve_lab_topology/Arista_CVP_EVPN_AA_multihoming_lab.unl) 
 
 5. Start your CloudVision Portal (CVP) node on EVE-NG and do the initial setup (not covered in this lab).
 
