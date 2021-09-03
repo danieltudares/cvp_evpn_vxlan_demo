@@ -25,7 +25,7 @@ Details on the fabric underlay and overlay infrastructure is located [here](./in
 For this lab environment the following tools and Arista images are used: 
 
 ### *Arista:*
-- Arista vEOS-lab 4.25.4M
+- Arista vEOS-lab 4.25.5M
 - Arista CloudVision Portal 2021.1.1
 
 ### *EVE-NG:*
@@ -56,13 +56,13 @@ For this lab environment the following tools and Arista images are used:
 - Any device Mac/Win/Linux or VM with network reachability to the CloudVision server and EOS management interfaces. 
 
 ### *DHCP Server:*
-- Any DHCP server that can provide IP reservation based on MAC address. The DHCP server needs to be located on the same management network as the vEOS devices for the ZTP process. For this lab we will run ISC-DHCP inside de CloudVision server (This is only for lab purposes and not recommended for prod environments).
+- Any DHCP server that can provide IP reservation based on MAC address. The DHCP server needs to be located on the same management network as the vEOS devices for the ZTP process. For this lab we used ISC-DHCP inside de CloudVision server (This is only for lab purposes and not recommended for prod environments).
 
 ---
 
 ## **Environment Setup:**
 
-To run this lab, you can either clone this repo in your local environment and use ***/virtual_lab/EVE_NG/labs/EVPN_AA_Multihoming*** as your root folder or for a cleaner approach you can create a new folder in your local environment (or docker AVD container - see next section). If you choose the later, this is the folder structure and files that you will need to create and copy to your environment: 
+To run this lab, either clone this repo in your local environment and use ***/virtual_lab/EVE_NG/labs/EVPN_AA_Multihoming*** as your root folder or for a cleaner approach, create a new folder in your local environment (or docker AVD container - see next section). If you choose the later, create the following folder structure on the root folder and copy the file content from this repo: 
 
 ```
 |--EVPN_AA_Multihoming
@@ -88,11 +88,11 @@ To run this lab, you can either clone this repo in your local environment and us
 
 Two methods can be used to get Ansible up and running: running a Python virtual envionrment or using the AVD docker container. 
 
-### AVD Docker container:
+### - AVD Docker container:
 The AVD docker is a container with all requirements pre-installed. It is a quick way to start working on your lab without worrying about setting up your environment. 
 Info about getting the AVD docker container up and running [here](https://avd.sh/en/releases-v3.x.x/docs/installation/setup-environment.html#use-docker-as-avd-shell)
 
-### Python virtual environment:
+### - Python virtual environment:
 1. From the project root folder (*/EVPN_AA_Multihoming*) create a new python environment and activate it:
 
 ```bash
