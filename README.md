@@ -206,6 +206,8 @@ When passing the **"build"** tag, this playbook will create new folders and gene
 The final spine/leaf configuration file is created under **/inventory/intended/configs/DC-XXXX.cfg**, you can review each config file and make sure the intended config is as expected. 
 
 ```cli
+#sample intended config file for DC-LEAF1
+
 $ cat /inventory/intended/configs/DC-LEAF1.cfg
 
 !RANCID-CONTENT-TYPE: arista
@@ -276,6 +278,8 @@ This playbook has 3 main functions:
 <img src="data/images/cvp_tasks.png" width="800">
 
 4. Final step is to go on CVP under **Provisioning > Tasks**, select all tasks created by ansible and execute all tasks. 
+
+After executing the tasks on CVP, all nodes will reboot and once they come up, the topology should be up and running with full underlay/overlay connectivity. In the next steps, we will run some lab validations. 
 
 ---
 
@@ -506,7 +510,7 @@ tenants:
 
 ```
 According to our file, we created three tenants: tenant_blue, tenant_green and tenant_red. Each tenant is an independent network and there is no inter-tenancy communication in this example. 
-Each tenant has a single VRF: tenant_blue_vrf, tenant_green_vrf and tenant_red_vrf. The SVIs belonging to each tenant's VRF should be able to communicate using the VXLAN Anycast IP address assigned to each SVI as their default gateway. For example, SVI 10 uses 10.10.10.1 as they default gateway to reach SVI 50. 
+Each tenant has a single VRF: tenant_blue_vrf, tenant_green_vrf and tenant_red_vrf. The SVIs belonging to each tenant's VRF should be able to communicate using the VXLAN Anycast IP address assigned to each SVI as their default gateway. For example, SVI 10 on tenant_blue_vrf uses 10.10.10.1 as they default gateway to reach SVI 50. 
 
 Based on this information and looking at the topology diagram, server01 should be able to only ping server04 and server06. Server02 should be able to only ping server03. And server05 is not able to ping any other network. 
 
@@ -520,10 +524,10 @@ PING 10.10.10.201 (10.10.10.201) 72(100) bytes of data.
 80 bytes from 10.10.10.201: icmp_seq=3 ttl=64 time=124 ms
 80 bytes from 10.10.10.201: icmp_seq=4 ttl=64 time=117 ms
 80 bytes from 10.10.10.201: icmp_seq=5 ttl=64 time=114 ms
-
 --- 10.10.10.201 ping statistics ---
 5 packets transmitted, 5 received, 0% packet loss, time 44ms
 rtt min/avg/max/mdev = 114.536/125.629/141.416/9.593 ms, pipe 5, ipg/ewma 11.164/132.882 ms
+
 server01#ping 10.10.50.200
 PING 10.10.50.200 (10.10.50.200) 72(100) bytes of data.
 80 bytes from 10.10.50.200: icmp_seq=1 ttl=62 time=67.4 ms
@@ -531,25 +535,21 @@ PING 10.10.50.200 (10.10.50.200) 72(100) bytes of data.
 80 bytes from 10.10.50.200: icmp_seq=3 ttl=62 time=53.3 ms
 80 bytes from 10.10.50.200: icmp_seq=4 ttl=62 time=45.6 ms
 80 bytes from 10.10.50.200: icmp_seq=5 ttl=62 time=39.3 ms
-
 --- 10.10.50.200 ping statistics ---
 5 packets transmitted, 5 received, 0% packet loss, time 42ms
 rtt min/avg/max/mdev = 39.311/52.789/67.430/9.769 ms, pipe 5, ipg/ewma 10.702/59.413 ms
-server01#ping 10.10.20.200
+
+erver01#ping 10.10.20.200
 PING 10.10.20.200 (10.10.20.200) 72(100) bytes of data.
 From 10.10.10.1 icmp_seq=1 Destination Net Unreachable
-
 --- 10.10.20.200 ping statistics ---
 5 packets transmitted, 0 received, +1 errors, 100% packet loss, time 46ms
-pipe 2
+
 server01#ping 10.10.40.200
 PING 10.10.40.200 (10.10.40.200) 72(100) bytes of data.
 From 10.10.10.1 icmp_seq=1 Destination Net Unreachable
-
 --- 10.10.40.200 ping statistics ---
 5 packets transmitted, 0 received, +1 errors, 100% packet loss, time 55ms
-pipe 2
-server01#
 
 #testing connectivity from server02
 
@@ -560,63 +560,54 @@ PING 10.10.30.200 (10.10.30.200) 72(100) bytes of data.
 80 bytes from 10.10.30.200: icmp_seq=3 ttl=63 time=44.5 ms
 80 bytes from 10.10.30.200: icmp_seq=4 ttl=63 time=38.4 ms
 80 bytes from 10.10.30.200: icmp_seq=5 ttl=63 time=31.8 ms
-
 --- 10.10.30.200 ping statistics ---
 5 packets transmitted, 5 received, 0% packet loss, time 44ms
 rtt min/avg/max/mdev = 31.850/45.199/60.880/9.969 ms, pipe 5, ipg/ewma 11.164/52.345 ms
+
 server02#ping 10.10.10.200
 PING 10.10.10.200 (10.10.10.200) 72(100) bytes of data.
 From 10.10.20.1 icmp_seq=1 Destination Net Unreachable
-
 --- 10.10.10.200 ping statistics ---
 5 packets transmitted, 0 received, +1 errors, 100% packet loss, time 44ms
-pipe 2
+
 server02#ping 10.10.40.200
 PING 10.10.40.200 (10.10.40.200) 72(100) bytes of data.
 From 10.10.20.1 icmp_seq=1 Destination Net Unreachable
-
 --- 10.10.40.200 ping statistics ---
 5 packets transmitted, 0 received, +1 errors, 100% packet loss, time 45ms
-pipe 2
+
 server02#ping 10.10.50.200
 PING 10.10.50.200 (10.10.50.200) 72(100) bytes of data.
 From 10.10.20.1 icmp_seq=1 Destination Net Unreachable
-
 --- 10.10.50.200 ping statistics ---
 5 packets transmitted, 0 received, +1 errors, 100% packet loss, time 43ms
-pipe 2
-server02#
 
 #testing connectivity from server05
 
 server05#ping 10.10.10.200
 PING 10.10.10.200 (10.10.10.200) 72(100) bytes of data.
 From 10.10.40.1 icmp_seq=1 Destination Net Unreachable
-
 --- 10.10.10.200 ping statistics ---
 5 packets transmitted, 0 received, +1 errors, 100% packet loss, time 52ms
-pipe 2
+
 server05#ping 10.10.20.200
 PING 10.10.20.200 (10.10.20.200) 72(100) bytes of data.
 From 10.10.40.1 icmp_seq=1 Destination Net Unreachable
-
 --- 10.10.20.200 ping statistics ---
 5 packets transmitted, 0 received, +1 errors, 100% packet loss, time 41ms
-pipe 2
+
 server05#ping 10.10.30.200
 PING 10.10.30.200 (10.10.30.200) 72(100) bytes of data.
 From 10.10.40.1 icmp_seq=1 Destination Net Unreachable
-
 --- 10.10.30.200 ping statistics ---
 5 packets transmitted, 0 received, +1 errors, 100% packet loss, time 42ms
-pipe 2
+
 server05#ping 10.10.50.200
 PING 10.10.50.200 (10.10.50.200) 72(100) bytes of data.
 From 10.10.40.1 icmp_seq=1 Destination Net Unreachable
-
 --- 10.10.50.200 ping statistics ---
 5 packets transmitted, 0 received, +1 errors, 100% packet loss, time 52ms
-pipe 2
+
 ```
 
 If we want to validate proper distribution of ethernet-segment routes (type-4) across the EVPN fabric, we can do so with the following command:
@@ -722,7 +713,7 @@ DC-LEAF2#tcpdump interface vlan 10 filter icmp
 tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
 listening on vlan10, link-type EN10MB (Ethernet), capture size 262144 bytes
 
-#shutdown interface eth5 on DC-LEAF5 
+#shutdown interface eth5 on DC-LEAF1 
 DC-LEAF1#conf t
 DC-LEAF1(config)#int et5
 DC-LEAF1(config-if-Et5)#shut
